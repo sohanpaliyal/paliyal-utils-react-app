@@ -27,18 +27,34 @@ export default function TextForms(props) {
         setText(event.target.value)
     }
 
+
+    
+    const handleCopy = ()=>{
+        // console.log('onchange was clicked');
+        const text = document.getElementById('myBox')
+        text.select()
+        navigator.clipboard.writeText(text.value) 
+    }
+
+    const removeExtraSpaces = () =>{
+        const newText = text.split(/[ ]+/);
+        setText(newText.join(" "));
+    }
+
   return (
     <>
-    <div className='container'>
-        <h1>{props.heading}</h1>
+    <div className='container' style={{color:props.mode==='dark' ? 'white':'gray'}}>
+        <h1 >{props.heading}</h1>
         <div className="mb-3">
-             <textarea className="form-control" onChange={handleOnChange} value={text} id="myBox" rows="8"></textarea> 
+             <textarea className="form-control" onChange={handleOnChange} value={text} id="myBox" rows="8" style={{backgroundColor:props.mode==='dark' ? 'gray':'white',color:props.mode==='dark' ? 'white':'gray'}}></textarea> 
              <button className='btn btn-primary mt-2 mx-2' onClick={handleUpClick}>convert to uppercase</button>
              <button className='btn btn-primary mt-2 mx-2' onClick={handleLoClick}>convert to lowercase</button> 
              <button className='btn btn-primary mt-2 mx-2' onClick={deleteText}>delete</button> 
+             <button className='btn btn-primary mt-2 mx-2' onClick={handleCopy}>Copy Text</button> 
+             <button className='btn btn-primary mt-2 mx-2' onClick={removeExtraSpaces}>Remove Extra Spaces</button> 
         </div>
     </div>
-    <div className='container my-2'>
+    <div className='container my-2' style={{color:props.mode==='dark' ? 'white':'gray'}}>
         <h2>
             Your text summary
         </h2>
