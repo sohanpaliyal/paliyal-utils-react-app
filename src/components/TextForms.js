@@ -7,6 +7,7 @@ export default function TextForms(props) {
         // console.log('uppercase was clicked',text);
         let newText = text.toUpperCase();
         setText(newText);
+        props.initAlert('Converted to Uppercase','warn')
     }
 
     
@@ -14,12 +15,14 @@ export default function TextForms(props) {
         // console.log('uppercase was clicked',text);
         let newText = text.toLowerCase();
         setText(newText);
+        props.initAlert('Converted to Lowercase','warn')
     }
 
     const deleteText = ()=>{
         // console.log('uppercase was clicked',text);
         // let newText = text.toLowerCase();
         setText('');
+        props.initAlert('text is deleted','warn')
     }
 
     const handleOnChange = (event)=>{
@@ -34,11 +37,13 @@ export default function TextForms(props) {
         const text = document.getElementById('myBox')
         text.select()
         navigator.clipboard.writeText(text.value) 
+        props.initAlert('text copied','warn')
     }
 
     const removeExtraSpaces = () =>{
         const newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.initAlert('extra spaces removed','warn')
     }
 
   return (
@@ -46,7 +51,7 @@ export default function TextForms(props) {
     <div className='container' style={{color:props.mode==='dark' ? 'white':'gray'}}>
         <h1 >{props.heading}</h1>
         <div className="mb-3">
-             <textarea className="form-control" onChange={handleOnChange} value={text} id="myBox" rows="8" style={{backgroundColor:props.mode==='dark' ? 'gray':'white',color:props.mode==='dark' ? 'white':'gray'}}></textarea> 
+             <textarea className="form-control" onChange={handleOnChange} value={text} id="myBox" rows="8" style={{backgroundColor:props.mode==='dark' ? '#042743':'white',color:props.mode==='dark' ? 'white':'#042743'}}></textarea> 
              <button className='btn btn-primary mt-2 mx-2' onClick={handleUpClick}>convert to uppercase</button>
              <button className='btn btn-primary mt-2 mx-2' onClick={handleLoClick}>convert to lowercase</button> 
              <button className='btn btn-primary mt-2 mx-2' onClick={deleteText}>delete</button> 
