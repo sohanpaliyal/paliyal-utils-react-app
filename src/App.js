@@ -37,7 +37,7 @@ function App() {
     setMode(cls);
     document.body.style.background = cls;
     initAlert(cls +`dark mode has been disabled`,'success');
-  }
+}
 
   return (
     <Router>
